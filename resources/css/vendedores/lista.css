@@ -1,0 +1,49 @@
+/* table {
+    margin-bottom: 1rem;
+    font-size: 11pt;
+} */
+/* caption {
+    caption-side: top;
+    font-size: 1vw;
+    text-align: -webkit-center;
+    text-decoration: underline;
+} */
+img {
+    vertical-align: middle;
+    border-style: none;
+    /* width: 3%; */
+}
+.crear-cuenta .botones {
+    /* padding-top: 2%; */
+    /* width: 100%; */
+    text-align: center;
+    /* padding-bottom: 5%; */
+}
+.btn-info {
+    /* background-color: #5EBA7D; */
+    /* font-size: 16px; */
+    /* color: white; */
+    font-family: 'Poppins';
+    /*width: 12%;
+    height: 50%; */
+}
+
+/* .my-custom-scrollbar {
+    position: relative;
+    height: auto;
+    max-height: 400px;
+    overflow: auto;
+} */
+/* .table-wrapper-scroll-y {
+    display: block;
+} */
+
+.registrar{
+    right: 3%;
+}
+
+
+.text-right {
+    text-align: right!important;
+    /* padding-bottom: 2%; */
+}

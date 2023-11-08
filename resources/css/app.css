@@ -1,0 +1,35 @@
+.titulo{
+    font-size: 20pt;
+    line-height : 28pt;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #a6ddb6;
+}
+.imgMedium{
+    width: 200px;
+    height: 200px;
+}
+.img130{
+    width: 130px;
+    height: 130px;
+}
+.footerText{
+    text-align: center;
+    color: white;
+    font-size: small;
+}
+.footer{
+    background-color: #014034;
+}
+
+
+/* como centrar undiv
+.parent{
+    display: grid;
+    place-items: center;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center
+} */

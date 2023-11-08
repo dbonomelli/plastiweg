@@ -1,0 +1,50 @@
+.navbar-color {
+    background-color: #07342F;
+}
+.navbar-brand {
+    font-weight: bold;color:#a6ddb6
+}
+.nav-link {
+    color:#a6ddb6;
+    margin-left: 60px;
+    /* padding-bottom: 18%; */
+    font-size: 15pt;
+    font-family: 'Montserrat', ligth;
+}
+.h1, h1 {
+    /* font-size: 2.5rem; */
+    font-family: 'Montserrat', bold;
+}
+body {
+    font-family: 'Montserrat';
+    background-color: #07342F;
+    color:white;
+}
+a:hover {
+    color: white;
+}
+.card-body{
+    background-color: #434750;
+}
+.card-header{
+    background-color: #07342F;
+    text-align: center;
+}
+/* .row{
+    padding-top: 10%;
+} */
+.card {
+    background-color: #A5B2B6;
+}
+.boton{
+    /* padding-top: 5%; */
+    text-align: center;
+}
+
+.btn-ingreso{
+    margin-top: 1em;
+}
+
+/* .input{
+    padding-top: 2%;
+} */

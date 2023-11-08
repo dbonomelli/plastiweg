@@ -1,0 +1,44 @@
+
+.column{
+    text-align: center;
+    /* padding-top: 5%; */
+}
+.accesos{
+    text-align: center;
+    /* padding-top: 2%; */
+
+}
+.centered {
+    position: absolute;
+    top: 59%;
+    left: 33%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+}
+.stroke {
+    text-align: center;
+    color: #FCDB00;
+    font-family: 'Montserrat', bold;
+    font-size: 46px;
+    text-shadow: -1px -1px 1px #000, 1px 1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000;
+    -webkit-text-fill-color: #FCDB00;
+    }
+.subtext{
+    /* padding-top: 2%; */
+    font-size: 12pt;
+    /* width: 39%; */
+    /* display: inline-flex; */
+    text-align: left;
+}
+/* .foto{
+    float: left;
+    /* padding-left: 3%; 
+} /*/
+
+
+.producto{
+    font-size: 10pt;
+    /* color: white; */
+    text-align: left;
+    font-weight: bold;
+}

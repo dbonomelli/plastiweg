@@ -1,0 +1,31 @@
+
+/* caption {
+    caption-side: top;
+    font-size: 1vw;
+    text-align: -webkit-center;
+    text-decoration: underline;
+} */
+img {
+    vertical-align: middle;
+    border-style: none;
+    /* width: 3%; */
+}
+
+.btn-info {
+    /* background-color: #5EBA7D; */
+    /* font-size: 16px; */
+    font-family: 'Poppins';
+}
+
+
+/* .table-wrapper-scroll-y {
+    display: block;
+} */
+
+/* .registrar{
+    right: 3%;
+} */
+
+.text-right {
+    text-align: right!important;
+}
