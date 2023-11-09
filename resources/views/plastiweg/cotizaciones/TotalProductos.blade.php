@@ -150,10 +150,10 @@ Plastiweb - Cotizacion
                             <div class="col">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <form method="POST" action="{{ route('cotizaciones.descarga') }}">
+                                        <form method="POST" action="{{ route('cotizaciones.export') }}">
                                             @csrf
                                             <input class="form-control" type="text" id="cotizacion" name="cotizacion" value={{$cotizacion}} readonly="readonly" hidden= "true">
-                                            <button type="submit" id="btnExport" disabled name="export" value="export to excel" class="btn btn-primary">Descargar cotizacion</button>
+                                            <button type="submit" id="btnExport" name="export" value="export to excel" class="btn btn-primary">Descargar cotizacion</button>
                                         </form>
                                     </div>
                                     <div>

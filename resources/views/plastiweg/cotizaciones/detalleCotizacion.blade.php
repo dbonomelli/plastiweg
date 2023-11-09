@@ -1,3 +1,4 @@
+
 @extends('layout.master')
 {{--  --}}
 {{-- Titulo Pagina --}}
@@ -140,7 +141,7 @@ PLASTIWEG - DETALLE COTIZACION
   </div>
   <div class="row my-3 offset-1">
     <div class="col offset-2">
-      <form method="POST" action=" {{ route('cotizaciones.descarga') }}">
+      <form method="POST" action=" {{ route('cotizaciones.export') }}">
         @csrf
         <input class="form-control" type="text" id="cotizacion" name="cotizacion" value={{ $cotizacion->num_cotizacion }} readonly="readonly" hidden= "true">
         <button type="submit" class="btn btn-info">Descargar cotizacion</button>

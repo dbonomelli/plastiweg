@@ -16,7 +16,7 @@
         .title{
             font-weight: bold;
             font-size: 30px;
-            color: #9BBB59;
+            color: #4F81BD;
         }
         .bcell-text{
             font-size: 20px;
@@ -40,7 +40,7 @@
         .right-side-b2{
             width: 24rem;
             height: 2rem;
-            background-color: #9BBB59;
+            background-color: #4F81BD;
             border-bottom: 2px solid black;
             border-right: 2px solid black;
         }
@@ -69,23 +69,16 @@
         }
         .right-middle-left{
             text-align: left;
-            width: 11.9rem;
-            height: 5rem;
-            border-right: 2px solid black;
-            border-bottom: 2px solid black;
-        }
-        .right-middle-right{
-            text-align: left;
-            width: 11.9rem;
+            width: 24rem;
             height: 5rem;
             border-right: 2px solid black;
             border-bottom: 2px solid black;
         }
         .a3-data{
-            font-size: 12px;
+            font-size: 15px;
         }
         .a3-import{
-            font-size: 12px;
+            font-size: 15px;
             font-weight: bold;
         }
         .employee-row{
@@ -99,7 +92,7 @@
             border-collapse: collapse;
         }
         th{
-            background-color: #9BBB59;
+            background-color: #4F81BD;
             color: #FFFFFF;
         }
         thead{
@@ -129,13 +122,13 @@
             border-right: none;
         }
         tr:nth-child(even){
-            background-color: #EBF1DE;
+            background-color: #C5D9F1;
         }
         .total{
             margin-top: 4px;
             display: table-cell;
             width: 11.3rem;
-            height: 4rem;
+            height: 3rem;
             border-bottom: 2px solid black;
             border-right: 2px solid black;
             border-left: 2px solid black;
@@ -145,21 +138,21 @@
     <div class="flex-container" style=" margin: auto; display:table;">
         <div class="flex-item left-side-a1" style="  display:table-cell;">
             <div style="text-align: center;">
-                <span class="title"> VENTA </span>
+                <span class="title"> COTIZACIÓN </span>
             </div>
         </div>
         <div class="flex-item right-side-b1"  style=" display:table-cell;">
             <div style="text-align: center; margin-right: 2rem; margin-top: 2rem;">
-                <span class="bcell-text"> VENTA N°: {{$venta->num_venta}}</span>
+                <span class="bcell-text"> COTIZACIÓN N°: {{$cotizacion->num_cotizacion}}</span>
             </div>
             <div style="text-align: center; margin-right: 2rem;">
-                <span class="bcell-text"> FECHA: {{$venta->fecha_formateada}}</span>
+                <span class="bcell-text"> FECHA: {{$cotizacion->fecha_formateada}}</span>
             </div>
         </div>              
     </div> 
     <div class="flex-container" style=" margin: auto; display:table;">
         <div class="flex-item left-side-a2" style=" display:table-cell !important;">
-            <div style="text-align: center;">
+            <div style="text-align: left;">
                 <span class="plastiweg">PLASTIWEG</span>
             </div>
         </div>
@@ -186,87 +179,30 @@
             </div>
         </div>
         <div class="flex-item right-middle-left" style=" display:table-cell !important;">
-            <div>
-                <span class="a3-import">Rut:</span>
-            </div>
-            <div>
-                <span class="a3-import">Cliente:</span>
-            </div>
-            @if(strlen($cliente->nombre_cliente) > 35)
-            <div>
-                <span ><br></span>
-            </div>
-            @endif
-            <div>
-                <span class="a3-data">Teléfono:</span>
-            </div>
-            <div>
-                <span class="a3-data">Correo:</span>
-            </div>
-            <div>
-                <span class="a3-data">Región:</span>
-            </div>
-            <div>
-                <span class="a3-data">Dirección:</span>
-            </div>
-            @if(strlen($cliente->direccion_cliente) > 35)
-            <div>
-                <span ><br></span>
-            </div>
-            @endif
-            <div>
-                <span class="a3-data">Dirección de despacho:</span>
-            </div>
-            @if(strlen($cliente->direccion_despacho) > 35)
-            <div>
-                <span ><br></span>
-            </div>
-            @endif
-            <div>
-                <span class="a3-data">Dirección de orden de compra:</span>
-            </div>
-            <div>
-                <span class="a3-data">Nombre persona de contacto:</span>
-            </div>
-            <div>
-                <span class="a3-data">Teléfono persona de contacto:</span>
-            </div>
-        </div>
-        <div class="flex-item right-middle-right" style=" display:table-cell !important;">
-            <div>
-                <span class="a3-data">{{$cliente->rut ? $cliente->rut : 'N/A' }}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->nombre_cliente ? $cliente->nombre_cliente : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->telefono_contacto_cliente ? $cliente->telefono_contacto_cliente : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->correo ? $cliente->correo : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->nombre_region ? $cliente->nombre_region : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->direccion_cliente ? $cliente->direccion_cliente : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->direccion_despacho ? $cliente->direccion_despacho : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->direccion_entrega_od ? $cliente->direccion_entrega_od : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->nombre_pers_contacto ? $cliente->nombre_pers_contacto : 'N/A'}}</span>
-            </div>
-            <div>
-                <span class="a3-data">{{$cliente->telefono_pers_contacto ? $cliente->telefono_pers_contacto : 'N/A'}}</span>
+            <div style="margin-left: 5px">
+                <div>
+                    <span class="a3-import">Rut: {{$cliente->rut ? $cliente->rut : 'N/A' }}</span>
+                </div>
+                <div>
+                    <span class="a3-import">Cliente: {{$cliente->nombre_cliente ? $cliente->nombre_cliente : 'N/A'}}</span>
+                </div>
+                <div>
+                    <span class="a3-data">Región: {{$cliente->nombre_region ? $cliente->nombre_region : 'N/A'}}</span>
+                </div>
+                <div>
+                    <span class="a3-data">Teléfono: {{$cliente->telefono_contacto_cliente ? $cliente->telefono_contacto_cliente : 'N/A'}}</span>
+                </div>
+                <div>
+                    <span class="a3-data">Correo: {{$cliente->correo ? $cliente->correo : 'N/A'}}</span>
+                </div>
+                <div>
+                    <span class="a3-data">Dirección: {{$cliente->direccion_cliente ? $cliente->direccion_cliente : 'N/A'}}</span>
+                </div>
             </div>
         </div>
     </div>
     <!-- Table seller-->
-    <div class="flex-container" style=" margin: auto; display:table; margin-top: 2px">
+    <div class="flex-container" style=" margin: auto; display:table; margin-top: 10px">
         <div class="flex-item employee-row" style=" display:table-cell !important;">
             <div>
                 <table>
@@ -280,10 +216,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{$venta->nombre_vendedor}}</td>
+                            <td>{{$cotizacion->nombre_vendedor}}</td>
                             <td>Bienes y Servicios</td>
-                            <td>{{$venta->forma_pago_formateada}}</td>
-                            <td>{{$venta->metodo_envio}}</td>
+                            <td>{{$cotizacion->forma_pago_formateada}}</td>
+                            <td>{{$cotizacion->metodo_envio}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -291,7 +227,7 @@
         </div>
     </div>
     <!-- Table products-->
-    <div class="flex-container" style=" margin: auto; display:table; margin-top: 4px">
+    <div class="flex-container" style=" margin: auto; display:table; margin-top: 10px">
         <div class="flex-item employee-row" style=" display:table-cell !important;">
             <div>
                 <table>
@@ -318,15 +254,12 @@
         </div>
     </div>
     <div class="flex-container" style="margin: auto; display:table; margin-top: 1px;">
-        <div class="flex-item" style=" display:table-cell !important; width: 32.7rem; height: 4rem; text-align: right">
+        <div class="flex-item" style=" display:table-cell !important; width: 32.7rem; height: 3rem; text-align: right">
             <div>
                 Neto $
             </div>
             <div>
                 Iva $
-            </div>
-            <div>
-                Cargos de Despacho $
             </div>
             <div style="font-weight: bold">
                 Total $
@@ -336,16 +269,13 @@
             <table>
                 <tbody>
                     <tr>
-                        <td>${{$venta->valor_total}}</td>
+                        <td>${{$cotizacion->valor_total}}</td>
                     </tr>
                     <tr>
-                        <td>${{$venta->iva_total}}</td>
+                        <td>${{$cotizacion->iva_total}}</td>
                     </tr>
                     <tr>
-                        <td>${{$venta->cargo}}</td>
-                    </tr>
-                    <tr>
-                        <td>${{$venta->pago_total}}</td>
+                        <td>${{$cotizacion->pago_total}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -354,13 +284,11 @@
     </div>
     <div class="flex-container" style="margin: auto; display:table; margin-top: 1px;">
         <div class="flex-item" style=" display:table-cell !important; width: 20rem;">
-            <img src="{{App\Http\Controllers\VentaController::getImage()}}" alt="">
+            <img src="{{App\Http\Controllers\CotizacionController::getImage()}}" alt="">
         </div>
-        <div class="flex-item" style=" display:table-cell !important; width: 24rem; text-align: right; height: 4rem;">
+        <div class="flex-item" style=" display:table-cell !important; width: 24rem; text-align: right;">
             <span> ¡Gracias por hacer negocios con nostros!</span>
         </div>
     </div>
-        
-    
 </body>
 </html>

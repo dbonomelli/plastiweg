@@ -1,3 +1,6 @@
+@php
+    $cotizacion = $cotizacionN
+@endphp
 @extends('layout.master')
 {{--  --}}
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/public/css/cotizacion.css') }}"/>
@@ -88,9 +91,9 @@ Plastiweb - Cotizacion
                             </form>
                             <div style='display: -webkit-inline-box;'>
                                 <a  href='{{ route('cotizaciones.seguir') }}'class="btn btn-warning btn-sm"> Volver </a>
-                                <form method="POST" action="{{ route('cotizaciones.descarga') }}">
+                                <form method="POST" action="{{ route('cotizaciones.export') }}">
                                     @csrf
-                                    <input class="form-control" type="text" id="cotizacion" name="cotizacion" value={{$cotizacionN}} readonly="readonly" hidden= "true">
+                                    <input class="form-control" type="text" id="cotizacion" name="cotizacion" value={{$cotizacion}} readonly="readonly" hidden= "true">
                                     <button type="submit" id="btnExport" disabled name="export" value="export to excel" class="btn btn-primary btn-sm"> 
                                         Emitir cotizacion
                                     </button>

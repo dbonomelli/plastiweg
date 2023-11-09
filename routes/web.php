@@ -56,9 +56,11 @@ Route::put('ajuste-stock/{ajusteStock}', 'App\Http\Controllers\AjusteStockContro
 
 //Cotizacion
 Route::get('/cotizaciones', 'App\Http\Controllers\CotizacionController@index') -> name('cotizaciones');
+Route::get('/cotizaciones/invoice', 'App\Http\Controllers\CotizacionController@export')->name('cotizaciones.invoice');
 Route::get('/cotizaciones/create', 'App\Http\Controllers\CotizacionController@create') -> name('cotizaciones.create');
 Route::get('/cotizaciones/SeleccionCliente', 'App\Http\Controllers\CotizacionController@seleccionclientes') -> name('cotizaciones.clientes');
 Route::post('/cotizaciones/store', 'App\Http\Controllers\CotizacionController@store') -> name('cotizaciones.store');
+Route::post('/cotizaciones/invoice/download', 'App\Http\Controllers\CotizacionController@export') -> name('cotizaciones.export');
 Route::post('/cotizaciones/ConsultarCotizacion', 'App\Http\Controllers\CotizacionController@buscar') ->name('cotizaciones.buscar');
 Route::post('/cotizaciones/ConsultarSeguimientoCotizacion', 'App\Http\Controllers\CotizacionController@buscarSeguimientoCotizacion') ->name('cotizaciones.buscarSeguimientoCotizacion');
 
