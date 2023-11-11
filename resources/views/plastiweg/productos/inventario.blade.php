@@ -56,29 +56,25 @@ PLASTIWEG-INVENTARIO
                           <th scope="row">Código:</th>
                           <td>{{ $product->codigo_producto }}</td>
                         </tr>
-                        <tr>
-                          <td class="text-center">
-                            <div class="col-6">
-                              @if ( $product->nombre_imagen == null )
-                              <img src="public/img/logos/comercializadora.jpg" alt="Default-Product" class="rounded mx-auto d-block mb-1 img-fluid" style="height: 90px">
-                            @else
-                              <img src="public/img/productos/{{$product->nombre_imagen}}" alt="Default-Product" class="rounded mx-auto d-block mb-1 img-fluid" style="height: 90px">
-                              @endif
+                        <tr class="text-center">
+                          <td >
+                            <div class="col-12">
+                              <img src="{{$product->imagen}}" class="rounded mx-auto d-block mb-1 img-fluid" style="height: 90px">
                             </div>
                           </div>
                         </tr>
                         <tr style="height: max-content">
                           <td>
-                            <div class="accordion accordion-flush" id="accordionFlush{{$product->codigo_producto}}" >
+                            <div class="accordion accordion-flush" id="accordionFlush{{$product->id_producto}}" >
                               <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-heading{{$product->codigo_producto}}">
+                                <h2 class="accordion-header" id="flush-heading{{$product->id_producto}}">
                                   <button class="accordion-button collapsed shadow rounded" type="button" data-bs-toggle="collapse" style="border-color: #7ea78a" 
-                                          data-bs-target="#flush-collapse{{$product->codigo_producto}}" aria-expanded="false" aria-controls="flush-collapse{{$product->codigo_producto}}">
+                                          data-bs-target="#flush-collapse{{$product->id_producto}}" aria-expanded="false" aria-controls="flush-collapse{{$product->codigo_producto}}">
                                     Especificaciones:
                                   </button>
                                 </h2>
-                                <div id="flush-collapse{{$product->codigo_producto}}" class="accordion-collapse collapse" style="background-color: #a6ddb6" 
-                                    aria-labelledby="flush-heading{{$product->codigo_producto}}" data-bs-parent="#accordionFlush{{$product->codigo_producto}}">
+                                <div id="flush-collapse{{$product->id_producto}}" class="accordion-collapse collapse" style="background-color: #a6ddb6" 
+                                    aria-labelledby="flush-heading{{$product->id_producto}}" data-bs-parent="#accordionFlush{{$product->id_producto}}">
                                   <div class="accordion-body producto">
                                     <table  class="table table-catalogo">
                                       <tbody class="producto">

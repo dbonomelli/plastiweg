@@ -13,7 +13,7 @@ PLASTIWEG - MODIFICACIÓN PRODUCTO
 @section('main')
 <div class="row">
     <div class="col-md-5 offset-md-3">
-        <form method="POST" action="{{ route('productos.update', $producto->id_producto) }}" style="text-align: left">
+        <form method="POST" action="{{ route('productos.update', $producto->id_producto) }}" enctype="multipart/form-data" style="text-align: left">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -65,9 +65,11 @@ PLASTIWEG - MODIFICACIÓN PRODUCTO
                 </div>
             </div>
             <div class="form-group">
-                <label for="lugar_almacenamiento">Nombre imagen</label>
-                <input type="text" id="nombre_imagen" name="nombre_imagen" value="{{ $producto->nombre_imagen }}" class="form-control" maxlength="45"
-                placeholder="Nombre de imagen con extensión." max="45" data-toggle="tooltip" title="Nombre de imagen referenciado a archivo con extension (ej. nombre.jpg)">
+                <label for="lugar_almacenamiento">Imagen Producto (Si no quiere cambiar la imagen, déjelo vacío) </label>
+                <input type="file" id="nombre_imagen" name="nombre_imagen" class="form-control" accept="image/png, image/jpg, image/jpeg">
+            </div>
+            <div id="imagen_elegida" style="display: flex; height: 200px; margin-top: 10px; justify-content: center; border: 1px solid green;">
+                <img src="{{$producto->imagen? $producto->imagen : $producto->defaultImage }}" alt="">
             </div>
             <div class="form-group">
                 <label for="especificaciones">Especificaciones: </label>
@@ -97,6 +99,25 @@ PLASTIWEG - MODIFICACIÓN PRODUCTO
         </form>
     </div>
 </div>
+
+<script>
+    const chooseFile = document.getElementById("nombre_imagen");
+    const imgPreview = document.getElementById("imagen_elegida");
+    chooseFile.addEventListener("change", function () {
+        getImgData();
+    });
+    function getImgData(){
+        const files = chooseFile.files[0];
+        if (files) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(files);
+            fileReader.addEventListener("load", function () {
+            imgPreview.style.display = "flex";
+            imgPreview.innerHTML = '<img src="' + this.result + '" />';
+            });    
+        }
+    }
+</script>
 @endsection
 {{-- Fin body --}}
 {{-- --}}

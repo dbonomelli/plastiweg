@@ -13,4 +13,8 @@ class Producto extends Model
     protected $table = "producto";
     protected $primaryKey = 'id_producto';
     public $timestamps = false;
+
+    public function imagen(){
+        return $this->hasOne(ImagenProducto::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\ImagenProducto;
 
 class ProductoController extends Controller
 {
@@ -41,6 +42,11 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $image = $request->file('nombre_imagen');
+        $path = $image->getRealPath();
+        $file = file_get_contents($path);
+        $base64 = base64_encode($file);
+        $image_name = $image->getClientOriginalName();
         $producto = new Producto();
 
             $prod = $request -> nombre_producto;
@@ -49,18 +55,30 @@ class ProductoController extends Controller
             if ($prod_rep or $prod_rep2) {
                 return redirect( route('productos.inventario'));
             }else{
+                $imagen_producto = new ImagenProducto();
+
+                $codigo = $request->codigo_producto;
+                $codigo = str_replace(' ', '-', $codigo);
                 $nom = $request -> nombre_producto;
                 $producto -> nombre_producto                = strtoupper($nom);
-                $producto -> codigo_producto                = strtoupper($request -> codigo_producto);
+                $producto -> codigo_producto                = strtoupper($codigo);
                 $producto -> contenido_unidades_por_empaque = $request -> contenido_unidades_por_empaque;
                 $producto -> precio_empaque                 = $request -> precio_empaque;
                 $producto -> stock_empaques                 = $request -> stock_empaques;
                 $producto -> stock_critico_empaques         = $request -> stock_critico_empaques;
                 $producto -> especificaciones               = $request -> especificaciones;
                 $producto -> lugar_almacenamiento           = $request -> lugar_almacenamiento;
-                $producto -> nombre_imagen                  = $request -> nombre_imagen;
-            
+
                 $producto-> save();
+
+                $producto_id = $producto -> id_producto;
+
+                $imagen_producto -> nombre_imagen = $image_name;
+                $imagen_producto -> imagen = $base64;
+                $imagen_producto -> producto_id_producto = $producto_id;
+                $imagen_producto->save();
+            
+
                 return redirect( route('productos.inventario'));
             }
         
@@ -86,6 +104,13 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
+        $imagen = DB::select('SELECT nombre_imagen, imagen FROM imagen_producto WHERE producto_id_producto ='.$producto->id_producto);
+        if(!empty($imagen)){
+            $producto->nombre_imagen = $imagen[0]->nombre_imagen;
+            $producto->imagen = 'data:image/png;base64,'.$imagen[0]->imagen;
+            $producto->defaultImage = CotizacionController::getImage();
+        }
+        #dd($producto);
         return view('plastiweg.productos.edit', compact('producto'));
     }
 
@@ -98,6 +123,14 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        if(!empty($request->nombre_imagen)){
+            $image = $request->file('nombre_imagen');
+            $path = $image->getRealPath();
+            $file = file_get_contents($path);
+            $base64 = base64_encode($file);
+            $image_name = $image->getClientOriginalName();
+            DB::table('imagen_producto')->where('producto_id_producto', $producto->id_producto)->update(['nombre_imagen' => $image_name, 'imagen' => $base64]);
+        }
         $producto -> nombre_producto                = strtoupper($request -> nombre_producto);
         $producto -> codigo_producto                = strtoupper($request -> codigo_producto);
         $producto -> contenido_unidades_por_empaque = $request -> contenido_unidades_por_empaque;
@@ -106,7 +139,6 @@ class ProductoController extends Controller
         $producto -> stock_critico_empaques         = $request -> stock_critico_empaques;
         $producto -> especificaciones               = $request -> especificaciones;
         $producto -> lugar_almacenamiento           = $request -> lugar_almacenamiento;
-        $producto -> nombre_imagen                  = $request -> nombre_imagen;
         
         $producto-> save();
         return redirect( route('productos.inventario'));
@@ -135,6 +167,7 @@ class ProductoController extends Controller
     public function inventario()
     {
         $productos = Producto::withTrashed()->paginate(9);
+        $productos = ProductoController::searchImage($productos);
         return view('plastiweg.productos.inventario', compact('productos'));
     }
 
@@ -153,6 +186,7 @@ class ProductoController extends Controller
     {
         $nombre = $request->nombre_producto;
         $productos = Producto::where('nombre_producto', 'like', "%{$nombre}%")->paginate(9);
+        
         return view('plastiweg.productos.index', compact('productos'));
     }
 
@@ -165,9 +199,11 @@ class ProductoController extends Controller
         $nombre = $request->nombre_producto;
         if ($nombre) {
             $productos = Producto::withTrashed()->where('nombre_producto', 'like', "%{$nombre}%")->paginate(9);
+            $productos = ProductoController::searchImage($productos);
             return view('plastiweg.productos.inventario', compact('productos'));
         }else{
             $productos = Producto::withTrashed()->paginate(9);
+            $productos = ProductoController::searchImage($productos);
             return view('plastiweg.productos.inventario', compact('productos'));
         }
         
@@ -182,6 +218,7 @@ class ProductoController extends Controller
     public function indexGuest()
     {
         $productos = Producto::paginate(9);
+        $productos = ProductoController::searchImage($productos);
         return view('plastiweg.guest.catalogo', compact('productos'));
     }
     // busqueda catalago invitados
@@ -189,7 +226,20 @@ class ProductoController extends Controller
     {
         $nombre = $request->nombre_producto;
         $productos = Producto::where('nombre_producto', 'like', "%{$nombre}%")->simplePaginate(9);
+        $productos = ProductoController::searchImage($productos);
         return view('plastiweg.guest.catalogo', compact('productos'));
+    }
+
+    public function searchImage($productos){
+        foreach($productos as $producto){
+            $imagen = DB::select('SELECT imagen FROM imagen_producto WHERE producto_id_producto ='.$producto->id_producto);
+            if(empty($imagen)){
+                $producto->imagen = CotizacionController::getImage();
+            }else{
+                $producto->imagen = 'data:image/png;base64,'.$imagen[0]->imagen;
+            }
+        }
+        return $productos;
     }
 
 }

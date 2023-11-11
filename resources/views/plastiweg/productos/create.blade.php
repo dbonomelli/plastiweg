@@ -27,8 +27,9 @@ PLASTIWEG - INGRESO PRODUCTOS
         <div class="d-flex justify-content-center" >
             <div class="row">
                 <div class="col">
-                    <form method="POST" action="{{ route('productos.store') }}" style="text-align: left">
+                    <form method="POST" action="{{ route('productos.store') }}" enctype="multipart/form-data" style="text-align: left">
                         @csrf
+                        @method('POST')
                         <div class="row" style="width: fit-content">
                             <div class="col">
                                 <div class="form-group">
@@ -76,10 +77,10 @@ PLASTIWEG - INGRESO PRODUCTOS
                                     placeholder="Ingrese stock critico" oninvalid="this.setCustomValidity('* Ingrese stock critico')"  oninput="setCustomValidity('')" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lugar_almacenamiento">Nombre imagen</label>
-                                    <input type="text" id="nombre_imagen" name="nombre_imagen" class="form-control" maxlength="45"
-                                    placeholder="Nombre de imagen." max="45" data-toggle="tooltip" title="Nombre de imagen referenciado a archivo con extension (ej. nombre.jpg)">
+                                    <label for="nombre_imagen">Imagen </label>
+                                    <input type="file" id="nombre_imagen" name="nombre_imagen" class="form-control" accept="image/png, image/jpg, image/jpeg">
                                 </div>
+                                <div id="imagen_elegida" style="display: flex; height: 200px; margin-top: 10px; justify-content: center; border: 1px solid green;"></div>
                             </div>
                         </div>
                         <div class="row" style="width: auto">
@@ -107,6 +108,24 @@ PLASTIWEG - INGRESO PRODUCTOS
     </div>
 </section>
 
+<script>
+    const chooseFile = document.getElementById("nombre_imagen");
+    const imgPreview = document.getElementById("imagen_elegida");
+    chooseFile.addEventListener("change", function () {
+        getImgData();
+    });
+    function getImgData(){
+        const files = chooseFile.files[0];
+        if (files) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(files);
+            fileReader.addEventListener("load", function () {
+            imgPreview.style.display = "flex";
+            imgPreview.innerHTML = '<img src="' + this.result + '" />';
+            });    
+        }
+    }
+</script>
 
 @endsection
 {{-- Fin bofy --}}
